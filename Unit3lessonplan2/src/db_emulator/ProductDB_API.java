@@ -1,0 +1,51 @@
+package db_emulator;
+
+public class ProductDB_API {
+	
+	public static ProductDB aProductDB;
+		
+	public String createProductDB_Object()
+	{
+	
+		String rValue = "";
+		try{
+			aProductDB = new ProductDB();
+			rValue =  "ProductDB object created successfully";
+		}
+		catch(Exception err)
+		{
+			rValue = "Error: " + err.toString();
+		}
+		
+		return rValue;
+	}
+	
+	public String getProduct(String aProductCode)
+	{
+		String rValue = "";
+		try{
+		Product aProduct = ProductDB.getProduct(aProductCode);
+		rValue = aProduct.toString();	
+		}
+		catch(Exception err)
+		{
+			rValue = "Error: " + err.toString();
+		}
+		return rValue;
+	}
+
+	public Product getProductObject(String aProductCode)
+	{
+		try{
+		Product aProduct = ProductDB.getProduct(aProductCode);
+		return aProduct;	
+		}
+		catch(Exception err)
+		{
+			Product aProduct = ProductDB.getProduct(err.toString());
+			return aProduct;
+		}
+		
+	}
+	
+}
